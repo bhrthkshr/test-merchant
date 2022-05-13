@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>test merchant</title>
+    <script>
+        function onSubmit() {
+            let text = document.getElementById('input').value;
+            let iframe = document.getElementById('myframe').src = text;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Test Merchant</h1>
+    <div style="display: flex;justify-content: center;">
+        <input type="text" id="input" style="width: 100%;"/>
+        <button onclick="onSubmit()">Submit</button>
+    </div>
+    <div style="display: flex;justify-content: center;">
+        <iframe id="myframe" src="" title="PL OLC PROD"
+            style="width: 100%;min-height:650px;height: 100%;"></iframe>
+    </div>
+</body>
+
+</html>
