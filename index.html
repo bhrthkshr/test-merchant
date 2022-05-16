@@ -1,6 +1,8 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test merchant</title>
     <script>
         function onSubmit() {
@@ -8,6 +10,8 @@
             let iframe = document.getElementById('myframe').src = text;
         }
     </script>
+    <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+	<script src="x-frame-bypass.js" type="module"></script>
 </head>
 
 <body>
@@ -17,7 +21,7 @@
         <button onclick="onSubmit()">Submit</button>
     </div>
     <div style="display: flex;justify-content: center;">
-        <iframe id="myframe" src="" title="PL OLC PROD"
+        <iframe is="x-frame-bypass" id="myframe" src="" title="PL OLC PROD"
             style="width: 100%;min-height:650px;height: 100%;"></iframe>
     </div>
 </body>
