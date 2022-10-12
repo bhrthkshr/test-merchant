@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    p {
+        font-size: 20px;
+    }
+    h5{
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>geo location test</h1>
+    <button onclick="requestAgain()">request again</button>
+    <button onclick="clear()">clear</button>
+    <ul id="outcome"></ul>
+    <h5 style="color: red; font-size: 24px; background-color: rgb(241, 187, 189);" id="err"></h5>
+    <p style="color: rgb(17, 112, 24)" id="appversion"></p>
+    <p style="color: #521" id="useragent"></p>
+    <p style="color: rgb(204, 99, 99)" id="navigator"></p>
+    <p style="color: rgb(153, 50, 125)" id="os"></p>
+    <p style="color: rgb(141, 126, 38)" id="ismobile"></p>
+
+    <!-- <iframe  allowtransparency="true" frameborder="0" width="100%" height="100%" allowpaymentrequest="true" 
+src="https://api.razorpay.com/v1/checkout/public?traffic_env=production&amp;build=126f9f21929289bb8280117be30e4c11856e05d4" class="razorpay-checkout-frame">
+</iframe> -->
+</body>
+
+<script>
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+    };
+
+    let geo = '';
+
+    var successCallback = (position) => {
+        console.log('pos', position);
+        if (position && position.coords) {
+            let data = position.coords
+            for (const key in data) {
+                const node = document.createElement("li");
+                console.log("🧑‍💻 -> successCallback -> key1 ---", key)
+                // if (Object.hasOwnProperty.call(data, key)) {
+                const finalstring = key + " : " + data[key];
+                //     console.log(element);
+                // }
+                const textnode = document.createTextNode(finalstring);
+                node.appendChild(textnode);
+                document.getElementById("outcome").appendChild(node);
+            }
+        }
+
+    };
+
+    var errorCallback = (error) => {
+        console.log('Error', error);
+        document.getElementById("err").innerHTML = error.message + "<br> Please enable and try again"
+    };
+
+    function onload() {
+        // console.log("🧑‍💻 -> onload -> navigator", navigator)
+        setTimeout(() => {
+            let appVersion = JSON.stringify(navigator.appVersion)
+            let userAgent = JSON.stringify(navigator.userAgent)
+            let userAgentData = navigator.userAgentData
+            document.getElementById("appversion").innerHTML = "<b>Appversion:</b> " + appVersion
+            document.getElementById("useragent").innerHTML = "<b>UserAgent: </b>  " + userAgent
+            document.getElementById("os").innerHTML = "<b>OS: </b>  " + userAgentData.platform
+            document.getElementById("ismobile").innerHTML = "<b>isMobile: </b>  " + userAgentData.mobile
+        }, 0);
+        console.log("🧑‍💻 -> onload ->  navigator.geolocation", navigator.geolocation)
+        if (navigator && navigator.geolocation) {
+            geo = navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+        }else {
+            document.getElementById("err").innerHTML =  "Geolocation is not supported by this device"
+            console.log('Geolocation is not supported by this device')
+        }
+    }
+
+    onload();
+
+    function requestAgain() {
+        if (navigator && navigator.geolocation) {
+            geo = navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+        } else {
+            console.log('failed to get navigator');
+        }
+    }
+
+    function clear() {
+        navigator.geolocation.clearWatch(geo);
+    }
+
+
+    // Request repeated updates.
+// const watchId = navigator.geolocation.watchPosition(
+//   scrollMap, handleError
+// );
+
+// function scrollMap(position) {
+//   const { latitude, longitude } = position.coords;
+//   // Scroll map to latitude / longitude.
+// }
+
+// function handleError(error) {
+//   // Display error based on the error code.
+//   const { code } = error;
+//   switch (code) {
+//     case GeolocationPositionError.TIMEOUT:
+//       // Handle timeout.
+//       break;
+//     case GeolocationPositionError.PERMISSION_DENIED:
+//       // User denied the request.
+//       break;
+//     case GeolocationPositionError.POSITION_UNAVAILABLE:
+//       // Position not available.
+//       break;
+//   }
+// }
+</script>
+
+</html>
