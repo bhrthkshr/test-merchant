@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 10px;
+    }
+</style>
+<body>
+    <div>
+        <h2>Enter tor-app-id</h2>
+        <div>
+            <input id="tor_app" type="text" value="" style="font-size:20px; width: 100%;">
+        </div>
+        <div></div>
+        <!-- <button onclick="generate()">Genrate</button> -->
+        <div></div>
+        <a href="" target="_blank" id="tor_link"></a>
+    </div>
+</body>
+<script>
+    var tor = document.getElementById("tor_app");
+    const log = document.getElementById('values');
+    tor.addEventListener('input', updateValue);
+
+    function updateValue(e) {
+        // log.textContent = e.target.value;
+        generate(e.target.value)
+    }
+        
+    function generate(e){
+        var link =  "https://tor.capitalfloat.com/"+e+"/profile"
+        var link_tag = document.getElementById("tor_link");
+        link_tag.href = link;
+        document.getElementById("tor_link").innerHTML = link;
+    }
+</script>
+</html>
