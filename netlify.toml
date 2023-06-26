@@ -1,5 +1,5 @@
 # Redirect with a 302
 [[redirects]]
-from = "/redirect"
+from = "/mi"
 to = "https://in.mismart.mi.com/applink.html"
 status = 302
