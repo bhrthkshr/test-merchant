@@ -3,14 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test mi</title>
+    <title>Document</title>
 </head>
 
-<body>    
-
-    <a href="com.xiaomi.miforce">deep - MI app</a>
+<body>
+    <h1>Redirecting...</h1>
+    <p>You should be redirected automatically to target URL:
+        <a href="https://in.mismart.mi.com/applink.html">mi smart</a>.
+        If not click the link.
+    <form id="form-post" action="http://192.168.0.128:9006/mi/redirect" method="get">
+        <input type="submit" value="Submit">
+    </form>
+    <br><br>
+    <button id="test" onclick="handleClick()">timeout</button>
 </body>
+
+<script>
+    const button = document.getElementById('test');
+    // Define the click event function
+    function handleClick(event) {
+        // Code to be executed when the element is clicked
+        console.log('Button clicked!');
+        document.getElementById("form-post").submit();
+    }
+
+    (function start() {
+        setTimeout(() => {
+            // button.click();
+            // window.open('https://in.mismart.mi.com/applink.html')
+            window.location.href = 'https://in.mismart.mi.com/applink.html';
+        }, 6000);
+    })()
+</script>
 
 </html>
