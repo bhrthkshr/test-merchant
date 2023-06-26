@@ -1,2 +1,2 @@
 # Redirects from what the browser requests to what we serve
-/home                https://in.mismart.mi.com/applink.html  302
+/mi                https://in.mismart.mi.com/applink.html  302
